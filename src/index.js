@@ -11,3 +11,4 @@ let form = new Form(email, country, zip, password, passwordConf);
 const submit = document.querySelector('#submit-btn');
 
 submit.addEventListener('click', form.submit);
+email.addEventListener('input', form.validateEmail);
