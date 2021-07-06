@@ -7,6 +7,7 @@ class Form {
     this.passConfElem = passConf;
     this.submit = this.submit.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
+    this.validateZip = this.validateZip.bind(this);
   }
   submit(e) {
     e.preventDefault();
@@ -24,17 +25,12 @@ class Form {
   highfive() {
     console.log('High Five!!!');
   }
-  validateEmail() {
-    const regex = /^[a-z0-9._-]+@[a-z0-9.]{3,}\.[a-z]{2,4}$/i;
-    const isValid = regex.test(this.emailElem.value);
-    const parentElement = this.emailElem.parentElement;
-    const hasErrorMsg = parentElement.lastElementChild.classList.contains('email-error-msg');
+  addRemoveErrorMsg(isValid, hasErrorMsg, parentElement, errorMsgText) {
     if (!isValid) {
       if (hasErrorMsg == false) {
         const errorMsg = document.createElement('p');
-        errorMsg.classList.add('email-error-msg');
         errorMsg.classList.add('form-error-msg');
-        errorMsg.textContent = "Your email is not in the right formating: example@email.com!";
+        errorMsg.textContent = errorMsgText;
         parentElement.appendChild(errorMsg);
       }
     } else {
@@ -42,10 +38,29 @@ class Form {
         parentElement.lastElementChild.remove();
       }
     }
+  }
+  validateEmail() {
+    const regex = /^[a-z0-9._-]+@[a-z0-9.]{3,}\.[a-z]{2,4}$/i;
+    const isValid = regex.test(this.emailElem.value);
+    const parentElement = this.emailElem.parentElement;
+    const hasErrorMsg = parentElement.lastElementChild.classList.contains('form-error-msg');
+    const errorMsgText = "Your email is not in a valid format, Please use a valid format like: example@email.com"
+    this.addRemoveErrorMsg(isValid,
+      hasErrorMsg,
+      parentElement,
+      errorMsgText);
     return isValid;
   }
   validateZip() {
-    return this.zipElem.value.toString().length == 5;
+    const isValid = this.zipElem.value.toString().length == 5;
+    const parentElement = this.zipElem.parentElement;
+    const hasErrorMsg = parentElement.lastElementChild.classList.contains('form-error-msg');
+    const errorMsgText = "Your zip code should be a valid 5-digit ZipCode";
+    this.addRemoveErrorMsg(isValid,
+      hasErrorMsg,
+      parentElement,
+      errorMsgText);
+    return isValid;
   }
   validatePassword() {
 
