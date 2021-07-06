@@ -13,19 +13,21 @@ class Form {
   }
   submit(e) {
     e.preventDefault();
-    console.log('');
-    console.log(`Email: ${this.emailElem.value}`);
-    console.log(`Email is valid: ${this.validateEmail()}`);
+    const validEmail = this.validateEmail();
+    const validZip = this.validateZip();
+    const validatePassword = this.validatePassword();
+    const validatePasswordConf = this.validatePasswordConf();
 
-    console.log(`Country: ${this.countryElem.value}`);
-    console.log(`Zip: ${this.zipElem.value}`);
-    console.log(`Zip is valid: ${this.validateZip()}`);
-    console.log(`Password: ${this.passElem.value}`);
-    console.log(`PasswordConfirmation: ${this.passConfElem.value}`);
-    this.highfive()
+    const submitReady = [validEmail, validZip, validatePassword, validatePasswordConf]
+    .every(val => val === true);
+    if (submitReady) {
+      this.highfive()
+    } else {
+      alert('Form not filled in correctly');
+    }
   }
   highfive() {
-    console.log('High Five!!!');
+    alert('High Five!!!');
   }
   addRemoveErrorMsg(isValid, hasErrorMsg, parentElement, errorMsgText) {
     if (!isValid) {
