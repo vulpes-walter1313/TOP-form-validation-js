@@ -8,6 +8,7 @@ class Form {
     this.submit = this.submit.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validateZip = this.validateZip.bind(this);
+    this.validatePassword = this.validatePassword.bind(this);
   }
   submit(e) {
     e.preventDefault();
@@ -63,7 +64,15 @@ class Form {
     return isValid;
   }
   validatePassword() {
-
+    const isValid = this.passElem.value.length >= 14;
+    const parentElement = this.passElem.parentElement;
+    const hasErrorMsg = parentElement.lastElementChild.classList.contains('form-error-msg');
+    const errorMsgText = "Password should be at least 14 characters long and hard to guess";
+    this.addRemoveErrorMsg(isValid,
+      hasErrorMsg,
+      parentElement,
+      errorMsgText);
+    return isValid;
   }
 }
 

@@ -13,3 +13,4 @@ const submit = document.querySelector('#submit-btn');
 submit.addEventListener('click', form.submit);
 email.addEventListener('input', form.validateEmail);
 zip.addEventListener('input', form.validateZip);
+password.addEventListener('input', form.validatePassword);
