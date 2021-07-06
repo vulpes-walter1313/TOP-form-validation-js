@@ -19,5 +19,5 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
-  "browserlist": ["last 2 versions"]
+  "browserslist": ["last 2 versions"]
 }
