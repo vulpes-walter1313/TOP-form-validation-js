@@ -14,3 +14,4 @@ submit.addEventListener('click', form.submit);
 email.addEventListener('input', form.validateEmail);
 zip.addEventListener('input', form.validateZip);
 password.addEventListener('input', form.validatePassword);
+passwordConf.addEventListener('input', form.validatePasswordConf)

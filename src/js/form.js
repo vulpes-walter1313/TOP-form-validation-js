@@ -9,6 +9,7 @@ class Form {
     this.validateEmail = this.validateEmail.bind(this);
     this.validateZip = this.validateZip.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
+    this.validatePasswordConf = this.validatePasswordConf.bind(this);
   }
   submit(e) {
     e.preventDefault();
@@ -46,7 +47,7 @@ class Form {
     const parentElement = this.emailElem.parentElement;
     const hasErrorMsg = parentElement.lastElementChild.classList.contains('form-error-msg');
     const errorMsgText = "Your email is not in a valid format, Please use a valid format like: example@email.com"
-    this.addRemoveErrorMsg(isValid,
+    this.addRemoveErrorMsg(isValid, 
       hasErrorMsg,
       parentElement,
       errorMsgText);
@@ -68,6 +69,17 @@ class Form {
     const parentElement = this.passElem.parentElement;
     const hasErrorMsg = parentElement.lastElementChild.classList.contains('form-error-msg');
     const errorMsgText = "Password should be at least 14 characters long and hard to guess";
+    this.addRemoveErrorMsg(isValid,
+      hasErrorMsg,
+      parentElement,
+      errorMsgText);
+    return isValid;
+  }
+  validatePasswordConf() {
+    const isValid = this.passConfElem.value === this.passElem.value;
+    const parentElement = this.passConfElem.parentElement;
+    const hasErrorMsg = parentElement.lastElementChild.classList.contains('form-error-msg');
+    const errorMsgText = "The passwords do not match";
     this.addRemoveErrorMsg(isValid,
       hasErrorMsg,
       parentElement,
